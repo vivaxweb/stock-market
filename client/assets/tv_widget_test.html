@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>TradingView Widget Test</title>
+  <style>
+    html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #1E1D32; overflow: hidden; }
+    #tv_chart_container { width: 100%; height: 100%; }
+  </style>
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+</head>
+<body>
+  <div id="tv_chart_container"></div>
+  <script type="text/javascript">
+    const urlParams = new URLSearchParams(window.location.search);
+    const symbol = urlParams.get('symbol') || 'NSE:RELIANCE';
+    const interval = urlParams.get('interval') || '5';
+    const theme = urlParams.get('theme') || 'dark';
+    const timezone = symbol.startsWith('NSE:') || symbol.startsWith('BSE:') ? 'Asia/Kolkata' : 'Etc/UTC';
+
+    new TradingView.widget({
+      "autosize": true,
+      "symbol": symbol,
+      "interval": interval,
+      "timezone": timezone,
+      "theme": theme,
+      "style": "1",
+      "locale": "en",
+      "toolbar_bg": "#1E1D32",
+      "enable_publishing": false,
+      "hide_top_toolbar": false,
+      "hide_legend": false,
+      "save_image": false,
+      "container_id": "tv_chart_container"
+    });
+  </script>
+</body>
+</html>
